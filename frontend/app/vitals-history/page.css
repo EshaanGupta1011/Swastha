@@ -1,11 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
 body {
   font-family: "Inter", sans-serif;
   background-color: #f4f5f7;
@@ -14,14 +12,12 @@ body {
   display: flex;
   flex-direction: column;
 }
-
 .vitals-history-page-wrapper {
   display: flex;
   flex-direction: column;
   flex: 1;
   min-height: 100vh;
 }
-
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -35,19 +31,16 @@ body {
   box-sizing: border-box;
   width: 100%;
 }
-
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: bold;
   color: #0070f3;
   text-decoration: none;
 }
-
 .navbar-links {
   display: flex;
   gap: 1rem;
 }
-
 .navbar-link {
   text-decoration: none;
   color: #333;
@@ -57,13 +50,11 @@ body {
   font-weight: 500;
   border: 1px solid transparent;
 }
-
 .navbar-link:hover {
   background-color: #e2e8f0;
   color: #0070f3;
   border-color: #cbd5e0;
 }
-
 .vitals-history-container {
   font-family: "Inter", sans-serif;
   background-color: #f4f5f7;
@@ -75,12 +66,10 @@ body {
   width: 100%;
   box-sizing: border-box;
 }
-
 .vitals-history-container h1 {
   text-align: center;
   margin-bottom: 32px;
 }
-
 .vitals-history-card {
   background: linear-gradient(145deg, #ffffff, #f1f3f5);
   width: 100%;
@@ -94,7 +83,6 @@ body {
   margin: 1rem auto;
   box-sizing: border-box;
 }
-
 .vitals-history-title {
   font-size: 2rem;
   font-weight: 700;
@@ -103,7 +91,6 @@ body {
   text-align: center;
   letter-spacing: -0.02em;
 }
-
 .empty-state {
   text-align: center;
   padding: 2rem;
@@ -112,12 +99,10 @@ body {
   border-radius: 8px;
   margin-top: 1rem;
 }
-
 .empty-state p {
   margin-bottom: 1rem;
   font-size: 1.1rem;
 }
-
 .empty-state a {
   display: inline-block;
   background-color: #0070f3;
@@ -128,11 +113,9 @@ body {
   font-weight: 500;
   transition: background-color 0.2s ease;
 }
-
 .empty-state a:hover {
   background-color: #005bb5;
 }
-
 .controls {
   display: flex;
   flex-wrap: wrap;
@@ -145,21 +128,18 @@ body {
   border: 1px solid #d1dce5;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
 }
-
 .controls > div {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.75rem;
 }
-
 .controls label {
   font-weight: 600;
   color: #4a5568;
   margin-bottom: 0.25rem;
   display: block;
 }
-
 .vitals-history-container select,
 .vitals-history-container button,
 .detail-controls select,
@@ -174,7 +154,6 @@ body {
   transition: all 0.2s ease;
   min-width: 200px;
 }
-
 .vitals-history-container select,
 .detail-controls select {
   -webkit-appearance: none;
@@ -186,14 +165,12 @@ body {
   background-size: 0.75rem;
   padding-right: 3rem;
 }
-
 .vitals-history-container select:focus,
 .detail-controls select:focus {
   outline: none;
   border-color: #0070f3;
   box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.2);
 }
-
 .vitals-history-container button,
 .detail-controls button {
   background: linear-gradient(to right, #0070f3, #005bb5);
@@ -202,20 +179,17 @@ body {
   font-weight: 600;
   box-shadow: 0 4px 6px rgba(0, 112, 243, 0.2);
 }
-
 .vitals-history-container button:hover:not(:disabled),
 .detail-controls button:hover:not(:disabled) {
   background: linear-gradient(to right, #005bb5, #004494);
   box-shadow: 0 6px 8px rgba(0, 112, 243, 0.3);
   transform: translateY(-2px);
 }
-
 .vitals-history-container button:active:not(:disabled),
 .detail-controls button:active:not(:disabled) {
   transform: translateY(-1px);
   box-shadow: 0 4px 6px rgba(0, 112, 243, 0.2);
 }
-
 .vitals-history-container button:disabled,
 .detail-controls button:disabled {
   opacity: 0.6;
@@ -224,7 +198,6 @@ body {
   box-shadow: none;
   background: linear-gradient(to right, #a0c4e8, #8ab3d9);
 }
-
 .collapsible-section {
   margin-bottom: 2rem;
   border-radius: 12px;
@@ -233,12 +206,10 @@ body {
   background-color: #ffffff;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
-
 .collapsible-section:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
   transform: translateY(-2px);
 }
-
 .collapsible-header {
   display: flex;
   justify-content: space-between;
@@ -248,7 +219,6 @@ body {
   background: linear-gradient(to right, #dbeafe, #bfdbfe);
   border-bottom: 1px solid #cbd5e0;
 }
-
 .collapsible-header h2,
 .collapsible-header h3 {
   margin: 0;
@@ -256,7 +226,6 @@ body {
   font-size: 1.5rem;
   font-weight: 600;
 }
-
 .toggle-button {
   background: none;
   border: 2px solid #1e40af;
@@ -268,27 +237,24 @@ body {
   font-weight: 600;
   transition: all 0.2s ease;
 }
-
 .toggle-button:hover {
   background-color: #1e40af;
   color: white;
 }
-
 .collapsible-content {
   overflow: hidden;
-  transition: max-height 0.4s ease-out, opacity 0.4s ease-out, padding 0.4s ease-out;
+  transition: max-height 0.4s ease-out, opacity 0.4s ease-out,
+    padding 0.4s ease-out;
   opacity: 1;
   padding: 0 1.5rem 1.5rem 1.5rem;
   background-color: #ffffff;
   box-sizing: border-box;
 }
-
 .collapsible-content.collapsed {
   max-height: 0;
   opacity: 0;
   padding: 0 1.5rem;
 }
-
 .collapsible-content table {
   width: 100%;
   border-collapse: separate;
@@ -299,11 +265,9 @@ body {
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
-
 .collapsible-content thead tr {
   background: linear-gradient(to bottom, #edf2f7, #e2e8f0);
 }
-
 .collapsible-content th {
   font-weight: 700;
   color: #2d3748;
@@ -315,24 +279,19 @@ body {
   background-color: transparent;
   font-size: 0.9rem;
 }
-
 .collapsible-content th:last-child {
   border-right: none;
 }
-
 .collapsible-content tbody tr {
   border-bottom: 1px solid #e2e8f0;
   transition: background-color 0.15s ease;
 }
-
 .collapsible-content tbody tr:last-child {
   border-bottom: none;
 }
-
 .collapsible-content tbody tr:hover {
   background-color: #f7fafc;
 }
-
 .collapsible-content td {
   padding: 1rem 1.25rem;
   text-align: center;
@@ -342,45 +301,35 @@ body {
   border-right: 1px solid #f1f5f9;
   word-break: break-word;
 }
-
 .collapsible-content td:last-child {
   border-right: none;
 }
-
 .comparison-table th {
   background-color: #e3f2fd;
   color: #1976d2;
 }
-
 .comparison-table tbody tr:nth-child(even) {
   background-color: #f8fafc;
 }
-
 .comparison-table tbody tr:nth-child(odd) {
   background-color: #ffffff;
 }
-
 .comparison-table tbody tr:hover {
   background-color: #e8f4fe;
 }
-
 .detail-view-table th {
   background-color: #f0fdf4;
   color: #166534;
 }
-
 .detail-view-table tbody tr:nth-child(even) {
   background-color: #f9fafb;
 }
-
 .detail-view-table tbody tr:nth-child(odd) {
   background-color: #ffffff;
 }
-
 .detail-view-table tbody tr:hover {
   background-color: #ecfdf5;
 }
-
 .detail-controls {
   margin-top: 1.5rem;
   display: flex;
@@ -394,14 +343,12 @@ body {
   border: 1px solid #bbf7d0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
 }
-
 .detail-controls label {
   font-weight: 600;
   color: #166534;
   margin-bottom: 0;
   white-space: nowrap;
 }
-
 .metadata {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -412,7 +359,6 @@ body {
   border-radius: 10px;
   border: 1px solid #d1dce5;
 }
-
 .metadata p {
   margin: 0;
   padding: 0.5rem 0;
@@ -420,18 +366,15 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
-
 .metadata p:last-child {
   border-bottom: none;
 }
-
 .metadata strong {
   font-weight: 600;
   color: #0070f3;
   margin-right: 0.5rem;
   flex-shrink: 0;
 }
-
 .section {
   margin-bottom: 2rem;
   padding: 1.5rem;
@@ -439,7 +382,6 @@ body {
   border-radius: 10px;
   border: 1px solid #e2e8f0;
 }
-
 .section h3 {
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
@@ -447,7 +389,6 @@ body {
   color: #2d3748;
   font-size: 1.25rem;
 }
-
 .loading,
 .error {
   text-align: center;
@@ -458,13 +399,11 @@ body {
   border-radius: 8px;
   margin-top: 1rem;
 }
-
 .error {
   color: #c53030;
   background-color: #fed7d7;
   border: 1px solid #feb2b2;
 }
-
 .graph-controls {
   display: flex;
   align-items: center;
@@ -475,14 +414,12 @@ body {
   border-radius: 8px;
   border: 1px solid #cce6ff;
 }
-
 .graph-controls label {
   font-weight: 600;
   color: #1e40af;
   margin-bottom: 0;
   white-space: nowrap;
 }
-
 .graph-controls select {
   padding: 0.8rem 1rem;
   border-radius: 8px;
@@ -502,13 +439,11 @@ body {
   background-size: 0.75rem;
   padding-right: 3rem;
 }
-
 .graph-controls select:focus {
   outline: none;
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
-
 .chart-container {
   position: relative;
   height: 400px;
@@ -516,7 +451,6 @@ body {
   padding: 20px 0;
   margin-top: 10px;
 }
-
 .chart-placeholder {
   display: flex;
   align-items: center;
@@ -526,47 +460,38 @@ body {
   border-radius: 8px;
   border: 1px dashed #cbd5e0;
 }
-
 .chart-placeholder p {
   color: #718096;
   font-size: 1.1rem;
   text-align: center;
   padding: 20px;
 }
-
 @media (max-width: 1200px) {
   .vitals-history-card {
     max-width: 95%;
     padding: 2rem;
   }
 }
-
 @media (max-width: 992px) {
   .navbar {
     padding: 0.75rem 1.5rem;
   }
-
   .vitals-history-container {
     padding: 1rem;
   }
-
   .vitals-history-card {
     padding: 1.75rem;
   }
-
   .vitals-history-title {
     font-size: 1.75rem;
   }
-
   .controls,
   .detail-controls {
     padding: 1.25rem;
   }
-
   .controls > div {
     align-items: center;
   }
-
   .vitals-history-container select,
   .vitals-history-container button,
   .detail-controls select,
@@ -575,99 +500,80 @@ body {
     font-size: 0.95rem;
     min-width: 180px;
   }
-
   .collapsible-header h2,
   .collapsible-header h3 {
     font-size: 1.3rem;
   }
-
   .collapsible-content {
     padding: 0 1.25rem 1.25rem 1.25rem;
   }
-
   .collapsible-content th,
   .collapsible-content td {
     padding: 0.85rem 1rem;
     font-size: 0.9rem;
   }
-
   .metadata {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     padding: 1.25rem;
   }
-
   .section {
     padding: 1.25rem;
   }
-
   .section h3 {
     font-size: 1.1rem;
   }
-
   .graph-controls {
     flex-direction: column;
     align-items: stretch;
   }
-
   .graph-controls select {
     width: 100%;
     min-width: auto;
   }
 }
-
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
     padding: 0.75rem 1rem;
   }
-
   .navbar-brand {
     margin-bottom: 0.5rem;
   }
-
   .navbar-links {
     width: 100%;
     justify-content: space-around;
     margin-top: 0.25rem;
   }
-
   .navbar-link {
     padding: 0.4rem 0.8rem;
     font-size: 0.95rem;
   }
-
   .vitals-history-container {
     padding: 1rem;
   }
-
   .vitals-history-card {
     padding: 1.5rem;
     border-radius: 12px;
   }
-
   .vitals-history-title {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
   }
-
   .controls {
     flex-direction: column;
     align-items: stretch;
     gap: 1.5rem;
     padding: 1.25rem;
   }
-
   .controls > div {
     width: 100%;
     align-items: stretch;
   }
-
   .controls label {
     text-align: left;
   }
-
   .vitals-history-container select,
   .vitals-history-container button,
   .detail-controls select,
@@ -677,117 +583,93 @@ body {
     padding: 0.8rem;
     font-size: 1rem;
   }
-
   .detail-controls {
     flex-direction: column;
     align-items: stretch;
     gap: 0.75rem;
     padding: 1rem;
   }
-
   .detail-controls label {
     text-align: left;
   }
-
   .collapsible-header {
     padding: 1rem 1.25rem;
   }
-
   .collapsible-header h2,
   .collapsible-header h3 {
     font-size: 1.25rem;
   }
-
   .toggle-button {
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
   }
-
   .collapsible-content {
     padding: 0 1rem 1rem 1rem;
   }
-
   .collapsible-content th,
   .collapsible-content td {
     padding: 0.75rem 0.9rem;
     font-size: 0.85rem;
   }
-
   .metadata {
     grid-template-columns: 1fr;
     gap: 0.8rem;
     padding: 1rem;
   }
-
   .metadata p {
     padding: 0.4rem 0;
   }
-
   .section {
     padding: 1rem;
     margin-bottom: 1.5rem;
   }
-
   .section h3 {
     font-size: 1rem;
     margin-bottom: 0.8rem;
   }
-
   .chart-container {
     height: 300px;
   }
-
   .graph-controls {
     padding: 1rem;
   }
-
   .graph-controls select {
     padding: 0.7rem;
   }
 }
-
 @media (max-width: 480px) {
   .navbar {
     padding: 0.5rem;
   }
-
   .navbar-brand {
     font-size: 1.25rem;
   }
-
   .navbar-link {
     padding: 0.3rem 0.6rem;
     font-size: 0.9rem;
   }
-
   .vitals-history-container {
     padding: 0.75rem;
   }
-
   .vitals-history-card {
     padding: 1.25rem;
     border-radius: 10px;
   }
-
   .vitals-history-title {
     font-size: 1.3rem;
     margin-bottom: 1.25rem;
   }
-
   .controls,
   .detail-controls {
     padding: 1rem;
   }
-
   .controls > div {
     gap: 0.6rem;
   }
-
   .controls label,
   .detail-controls label {
     font-size: 0.95rem;
   }
-
   .vitals-history-container select,
   .vitals-history-container button,
   .detail-controls select,
@@ -795,76 +677,60 @@ body {
     padding: 0.7rem;
     font-size: 0.95rem;
   }
-
   .collapsible-header {
     padding: 0.9rem 1.1rem;
   }
-
   .collapsible-header h2,
   .collapsible-header h3 {
     font-size: 1.1rem;
   }
-
   .toggle-button {
     padding: 0.3rem 0.6rem;
     font-size: 0.85rem;
   }
-
   .collapsible-content {
     padding: 0 0.9rem 0.9rem 0.9rem;
   }
-
   .collapsible-content th,
   .collapsible-content td {
     padding: 0.6rem 0.75rem;
     font-size: 0.8rem;
   }
-
   .metadata {
     gap: 0.6rem;
     padding: 0.9rem;
   }
-
   .metadata strong {
     font-size: 0.9rem;
   }
-
   .section {
     padding: 0.9rem;
     margin-bottom: 1.25rem;
   }
-
   .section h3 {
     font-size: 0.95rem;
   }
-
   .empty-state p {
     font-size: 1rem;
   }
-
   .empty-state a {
     padding: 0.6rem 1.2rem;
     font-size: 0.95rem;
   }
-
   .chart-container {
     height: 250px;
   }
-
   .graph-controls {
     padding: 0.8rem;
   }
-
   .graph-controls label {
     font-size: 0.9rem;
   }
-
   .graph-controls select {
     padding: 0.6rem;
     font-size: 0.9rem;
   }
 }
-
 .manage-reports-section {
   margin-top: 3rem;
   padding: 2rem;
@@ -873,7 +739,6 @@ body {
   border-left: 5px solid #fecaca;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
 }
-
 .manage-reports-title {
   font-size: 1.5rem;
   font-weight: 600;
@@ -881,7 +746,6 @@ body {
   margin: 0 0 1rem 0;
   text-align: center;
 }
-
 .manage-reports-description {
   text-align: center;
   color: #c2410c;
@@ -889,7 +753,6 @@ body {
   line-height: 1.5;
   font-size: 0.95rem;
 }
-
 .manage-reports-filter {
   display: flex;
   flex-wrap: wrap;
@@ -902,14 +765,12 @@ body {
   border-radius: 10px;
   border: 1px solid #fed7aa;
 }
-
 .manage-reports-label {
   font-weight: 600;
   color: #c2410c;
   margin-bottom: 0;
   white-space: nowrap;
 }
-
 .manage-reports-select {
   padding: 0.7rem 1rem;
   border-radius: 8px;
@@ -929,20 +790,17 @@ body {
   padding-right: 3rem;
   min-width: 200px;
 }
-
 .manage-reports-select:focus {
   outline: none;
   border-color: #ff7643;
   box-shadow: 0 0 0 3px rgba(255, 118, 67, 0.2);
 }
-
 .manage-reports-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.25rem;
   margin: 1.5rem 0;
 }
-
 .manage-report-item {
   display: flex;
   align-items: center;
@@ -954,7 +812,6 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   border: 1px solid #f1f5f9;
 }
-
 .manage-report-info {
   font-size: 0.95rem;
   color: #2d3748;
@@ -963,7 +820,6 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .manage-report-delete-button {
   background: linear-gradient(to right, #ff5733, #ff3333);
   color: white;
@@ -978,18 +834,15 @@ body {
   flex-shrink: 0;
   white-space: nowrap;
 }
-
 .manage-report-delete-button:hover:not(:disabled) {
   background: linear-gradient(to right, #ff3333, #ff1a1a);
   box-shadow: 0 6px 8px rgba(255, 51, 51, 0.3);
   transform: translateY(-2px);
 }
-
 .manage-report-delete-button:active:not(:disabled) {
   transform: translateY(-1px);
   box-shadow: 0 4px 6px rgba(255, 51, 51, 0.2);
 }
-
 .manage-report-delete-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -997,7 +850,6 @@ body {
   box-shadow: none;
   background: linear-gradient(to right, #ffcccc, #ff9999);
 }
-
 .manage-reports-empty {
   text-align: center;
   color: #718096;
@@ -1005,35 +857,28 @@ body {
   margin: 1rem 0;
   grid-column: 1 / -1;
 }
-
 .analysis-section {
   border: 2px solid #93c5fd;
   background-color: #eff6ff;
 }
-
 .analysis-header {
   background: linear-gradient(to right, #dbeafe, #bfdbfe);
   border-bottom: 1px solid #93c5fd;
 }
-
 .analysis-header h2 {
   color: #1e40af;
 }
-
 .analysis-toggle-button {
   border: 2px solid #1e40af;
   color: #1e40af;
 }
-
 .analysis-toggle-button:hover {
   background-color: #1e40af;
   color: white;
 }
-
 .analysis-content {
   background-color: #f8fafc;
 }
-
 .analysis-alerts-section,
 .analysis-trends-section,
 .analysis-correlations-section {
@@ -1044,22 +889,18 @@ body {
   background-color: #ffffff;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
 }
-
 .analysis-alerts-section {
   border-left: 4px solid #fbbf24;
   background-color: #fef3c7;
 }
-
 .analysis-trends-section {
   border-left: 4px solid #3b82f6;
   background-color: #dbeafe;
 }
-
 .analysis-correlations-section {
   border-left: 4px solid #10b981;
   background-color: #d1fae5;
 }
-
 .analysis-subtitle {
   font-size: 1.2rem;
   font-weight: 600;
@@ -1068,36 +909,30 @@ body {
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #e2e8f0;
 }
-
 .analysis-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
 .analysis-list-item {
   display: flex;
   align-items: flex-start;
   padding: 0.75rem 0;
   border-bottom: 1px solid #f1f5f9;
 }
-
 .analysis-list-item:last-child {
   border-bottom: none;
 }
-
 .analysis-item-icon {
   font-size: 1.2rem;
   margin-right: 0.75rem;
   flex-shrink: 0;
 }
-
 .analysis-item-detail {
   font-size: 0.85rem;
   color: #718096;
   margin-left: 0.5rem;
 }
-
 .analysis-no-data {
   color: #718096;
   font-style: italic;
@@ -1105,15 +940,42 @@ body {
   padding: 1rem;
   margin: 0;
 }
-
 .analysis-alerts-list .analysis-alert-item .analysis-item-icon {
   color: #f59e0b;
 }
-
 .analysis-trends-list .analysis-trend-item .analysis-item-icon {
   color: #3b82f6;
 }
-
 .analysis-correlations-list .analysis-correlation-item .analysis-item-icon {
   color: #10b981;
+}
+
+.comparison-table-container {
+  overflow-x: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.comparison-table {
+  width: max-content;
+  box-sizing: border-box;
+  min-width: 100%;
+}
+
+.comparison-table-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.comparison-table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.comparison-table-container::-webkit-scrollbar-thumb {
+  background: #c5c5c5;
+  border-radius: 4px;
+}
+
+.comparison-table-container::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
 }

@@ -24,20 +24,17 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
 interface Trend {
   test_name: string;
   trend: string;
   slope: number;
   data_points_count: number;
 }
-
 interface Alert {
   test_name: string;
   message: string;
   latest_report_date: string;
 }
-
 interface Correlation {
   test1: string;
   test2: string;
@@ -47,7 +44,6 @@ interface Correlation {
   direction: string;
   data_points: number;
 }
-
 interface AnalysisResult {
   message: string;
   analysis: {
@@ -56,7 +52,6 @@ interface AnalysisResult {
     correlations: Correlation[];
   };
 }
-
 interface Metadata {
   [key: string]: string | null | undefined;
   card_no?: string | null;
@@ -68,7 +63,6 @@ interface Metadata {
   report_date?: string | null;
   ref_dr?: string | null;
 }
-
 interface Test {
   test_name: string;
   result: string;
@@ -76,23 +70,19 @@ interface Test {
   reference_range: string;
   remarks: string;
 }
-
 interface ResultsSection {
   section: string | null;
   tests: Test[];
 }
-
 interface ExtractedData {
   metadata: Metadata;
   results: ResultsSection[];
 }
-
 interface ReportHistoryItem {
   filename: string;
   extracted_data: ExtractedData;
   category: string;
 }
-
 interface ComparisonReading {
   value: string;
   unit: string;
@@ -101,18 +91,15 @@ interface ComparisonReading {
   date: string;
   filename: string;
 }
-
 interface ComparisonTestItem {
   test_name: string;
   readings: (ComparisonReading | null)[];
 }
-
 interface ComparisonResponse {
   comparison_data?: ComparisonTestItem[];
   reports?: { filename: string; date: string }[];
   message?: string;
 }
-
 export default function VitalsHistory() {
   const [history, setHistory] = useState<ReportHistoryItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -145,14 +132,12 @@ export default function VitalsHistory() {
     null
   );
   const [analyzing, setAnalyzing] = useState(false);
-
   useEffect(() => {
     setIsClient(true);
     const tok = localStorage.getItem("token");
     setToken(tok);
     if (!tok) router.push("/login");
   }, [router]);
-
   useEffect(() => {
     if (!isClient || !token) return;
     setLoading(true);
@@ -169,7 +154,6 @@ export default function VitalsHistory() {
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
   }, [isClient, token, selectedCategory]);
-
   const handleCompare = async () => {
     setError(null);
     setComparisonResult(null);
@@ -202,7 +186,6 @@ export default function VitalsHistory() {
       setComparing(false);
     }
   };
-
   const handleViewDetail = () => {
     if (!detailReport) {
       setDetailData(null);
@@ -213,18 +196,15 @@ export default function VitalsHistory() {
     setComparisonResult(null);
     setCollapsedSections((prev) => ({ ...prev, details: false }));
   };
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     router.push("/login");
   };
-
   const toggleSection = (
     section: "comparison" | "details" | "graph" | "analysis"
   ) => {
     setCollapsedSections((prev) => ({ ...prev, [section]: !prev[section] }));
   };
-
   const handleDelete = async (filename: string) => {
     const target = history.find((r) => r.filename === filename);
     const confirmDelete = window.confirm(
@@ -278,7 +258,6 @@ export default function VitalsHistory() {
       setDeletingReport(null);
     }
   };
-
   const handleAnalyze = async () => {
     if (!token) return;
     setError(null);
@@ -309,11 +288,9 @@ export default function VitalsHistory() {
       setAnalyzing(false);
     }
   };
-
   const getDisplayDate = (r: ReportHistoryItem) => {
     const metadata = r.extracted_data.metadata;
     const dateStr = metadata.report_date || metadata.sample_collection_date;
-
     if (dateStr) {
       const formatsToTry = [
         "%Y/%m/%d %H:%M",
@@ -329,7 +306,6 @@ export default function VitalsHistory() {
         "%d %b %Y",
         "%d %B %Y",
       ];
-
       for (const fmtStr of formatsToTry) {
         try {
           let dateObj: Date | null = null;
@@ -374,7 +350,6 @@ export default function VitalsHistory() {
           } else if (fmtStr === "%d %B %Y") {
             dateObj = new Date(dateStr);
           }
-
           if (dateObj && !isNaN(dateObj.getTime())) {
             return dateObj.toLocaleDateString("en-GB");
           }
@@ -387,18 +362,14 @@ export default function VitalsHistory() {
         if (!isNaN(fallbackDate.getTime())) {
           return fallbackDate.toLocaleDateString("en-GB");
         }
-      } catch (e) {
-        // Ignore
-      }
+      } catch (e) {}
       return dateStr;
     }
     return "Not Available";
   };
-
   const getReportDate = (report: { filename: string; date: string }) => {
     return report.date;
   };
-
   const processVitalData = () => {
     if (!selectedVital || !comparisonResult?.comparison_data) return;
     const vital = comparisonResult.comparison_data.find(
@@ -420,11 +391,9 @@ export default function VitalsHistory() {
     });
     setVitalData({ dates, values, unit });
   };
-
   useEffect(() => {
     processVitalData();
   }, [selectedVital, comparisonResult]);
-
   const chartData = {
     labels: vitalData?.dates || [],
     datasets: [
@@ -444,7 +413,6 @@ export default function VitalsHistory() {
       },
     ],
   };
-
   const chartOptions: ChartOptions<"line"> = {
     responsive: true,
     maintainAspectRatio: false,
@@ -522,7 +490,6 @@ export default function VitalsHistory() {
       intersect: false,
     },
   };
-
   if (!isClient) return null;
   return (
     <div className="vitals-history-page-wrapper">
@@ -603,7 +570,6 @@ export default function VitalsHistory() {
                   {analyzing ? "Analyzing..." : "Analyze Trends"}
                 </button>
               </div>
-
               {analysisResult && (
                 <div className="collapsible-section analysis-section">
                   <div className="collapsible-header analysis-header">
@@ -651,7 +617,6 @@ export default function VitalsHistory() {
                   </div>
                 </div>
               )}
-
               {comparisonResult && (
                 <div className="collapsible-section">
                   <div className="collapsible-header">
@@ -671,39 +636,43 @@ export default function VitalsHistory() {
                     {comparisonResult.comparison_data &&
                     comparisonResult.comparison_data.length > 0 &&
                     comparisonResult.reports ? (
-                      <table className="comparison-table">
-                        <thead>
-                          <tr>
-                            <th>Test Name</th>
-                            {comparisonResult.reports.map((rep, i) => (
-                              <th key={i}>{getReportDate(rep)}</th>
-                            ))}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {comparisonResult.comparison_data.map((item, idx) => (
-                            <tr key={idx}>
-                              <td>{item.test_name}</td>
-                              {item.readings.map((r, j) => (
-                                <td key={j}>
-                                  {r ? (
-                                    <>
-                                      <strong>{r.value}</strong> {r.unit}
-                                      {r.remarks && (
-                                        <div className="remarks">
-                                          {r.remarks}
-                                        </div>
-                                      )}
-                                    </>
-                                  ) : (
-                                    <em>Not Available</em>
-                                  )}
-                                </td>
+                      <div className="comparison-table-container">
+                        <table className="comparison-table">
+                          <thead>
+                            <tr>
+                              <th>Test Name</th>
+                              {comparisonResult.reports.map((rep, i) => (
+                                <th key={i}>{getReportDate(rep)}</th>
                               ))}
                             </tr>
-                          ))}
-                        </tbody>
-                      </table>
+                          </thead>
+                          <tbody>
+                            {comparisonResult.comparison_data.map(
+                              (item, idx) => (
+                                <tr key={idx}>
+                                  <td>{item.test_name}</td>
+                                  {item.readings.map((r, j) => (
+                                    <td key={j}>
+                                      {r ? (
+                                        <>
+                                          <strong>{r.value}</strong> {r.unit}
+                                          {r.remarks && (
+                                            <div className="remarks">
+                                              {r.remarks}
+                                            </div>
+                                          )}
+                                        </>
+                                      ) : (
+                                        <em>Not Available</em>
+                                      )}
+                                    </td>
+                                  ))}
+                                </tr>
+                              )
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
                     ) : (
                       <p>No data available.</p>
                     )}
