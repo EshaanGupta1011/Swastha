@@ -1,8 +1,14 @@
-# Ignore environment files
-.env.local
-/frontend/.env.local
+# Ignore backend
+backend/
 
-# Ignore frontend node_modules
-node_modules
-.next
+# Ignore Docker
+docker-compose.yml
 
+# Ignore Next.js build files
+frontend/.next/
+frontend/out/
+frontend/node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
