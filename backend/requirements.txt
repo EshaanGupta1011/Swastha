@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+python-multipart
+python-jose[cryptography]
+passlib[bcrypt]
+pymongo[srv]
+python-dotenv
+pdfplumber
+spacy
+pytesseract
+pdf2image
+google-generativeai
+httpx
+certifi
+scipy
+numpy

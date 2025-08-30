@@ -1,0 +1,8 @@
+# Ignore environment files
+.env.local
+/frontend/.env.local
+
+# Ignore frontend node_modules
+node_modules
+.next
+
