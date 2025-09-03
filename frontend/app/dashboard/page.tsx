@@ -1,4 +1,3 @@
-// frontend/app/dashboard/page.tsx
 "use client";
 import "./page.css";
 import { useEffect, useState } from "react";
@@ -11,24 +10,37 @@ interface UserProfile {
   age: number;
   gender: string;
 }
-
 interface CategorySummary {
   category: string;
   count: number;
 }
+interface HealthScoreData {
+  score: number;
+  explanation: string;
+  tips: string[];
+}
+
+const LoadingSpinner = () => {
+  return (
+    <div className="dashboard-loading-spinner">
+      <div className="dashboard-spinner"></div>
+      <p className="dashboard-loading-text">Loading your dashboard...</p>
+    </div>
+  );
+};
 
 export default function Dashboard() {
   const [isClient, setIsClient] = useState(false);
   const [token, setToken] = useState<string | null>(null);
-
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [profileLoading, setProfileLoading] = useState(true);
   const [profileError, setProfileError] = useState<string | null>(null);
-
   const [reportSummary, setReportSummary] = useState<CategorySummary[]>([]);
   const [summaryLoading, setSummaryLoading] = useState(true);
   const [summaryError, setSummaryError] = useState<string | null>(null);
-
+  const [healthScore, setHealthScore] = useState<HealthScoreData | null>(null);
+  const [scoreLoading, setScoreLoading] = useState(true);
+  const [scoreError, setScoreError] = useState<string | null>(null);
   const router = useRouter();
 
   const handleLogout = () => {
@@ -174,11 +186,79 @@ export default function Dashboard() {
     fetchReportSummary();
   }, [token, isClient, router]);
 
+  useEffect(() => {
+    if (!isClient || !token) {
+      return;
+    }
+
+    const fetchHealthScore = async () => {
+      try {
+        setScoreLoading(true);
+        setScoreError(null);
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/vitals/score`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (!res.ok) {
+          if (res.status === 401) {
+            localStorage.removeItem("token");
+            router.push("/login");
+            return;
+          }
+          if (res.status === 404) {
+            setHealthScore(null);
+            setScoreLoading(false);
+            return;
+          }
+          let errorMessage = `Failed to fetch health score: ${res.status} ${res.statusText}`;
+          try {
+            const errorData = await res.json();
+            errorMessage = errorData.detail || errorMessage;
+          } catch {}
+          throw new Error(errorMessage);
+        }
+
+        let scoreDataRaw;
+        try {
+          scoreDataRaw = await res.json();
+        } catch {
+          throw new Error("Received invalid score data format from server.");
+        }
+
+        const scoreData: HealthScoreData = scoreDataRaw as HealthScoreData;
+        setHealthScore(scoreData);
+      } catch (err: any) {
+        const displayErrorMessage =
+          err.message ||
+          err.toString() ||
+          "Unable to load your health score right now. Please try again later.";
+        if (err.message && err.message.includes("No reports found")) {
+          setHealthScore(null);
+        } else {
+          setScoreError(displayErrorMessage);
+        }
+        setHealthScore(null);
+      } finally {
+        setScoreLoading(false);
+      }
+    };
+
+    fetchHealthScore();
+  }, [token, isClient, router]);
+
   if (!isClient) {
     return null;
   }
 
-  if (profileLoading || summaryLoading) {
+  if (profileLoading || summaryLoading || scoreLoading) {
+    // Include scoreLoading
     return (
       <div className="dashboard-page-wrapper">
         <nav className="navbar">
@@ -201,13 +281,13 @@ export default function Dashboard() {
           </div>
         </nav>
         <div className="dashboard-container">
-          <div className="dashboard-loading">Loading your dashboard...</div>
+          <LoadingSpinner />
         </div>
       </div>
     );
   }
 
-  if (profileError || summaryError) {
+  if (profileError || summaryError || scoreError) {
     return (
       <div className="dashboard-page-wrapper">
         <nav className="navbar">
@@ -231,13 +311,13 @@ export default function Dashboard() {
         </nav>
         <div className="dashboard-container">
           <div className="dashboard-error">
-            Error loading dashboard: {profileError || summaryError}
+            Error loading dashboard:{" "}
+            {profileError || summaryError || scoreError}
           </div>
         </div>
       </div>
     );
   }
-
   return (
     <div className="dashboard-page-wrapper">
       <nav className="navbar">
@@ -271,6 +351,43 @@ export default function Dashboard() {
               <p className="dashboard-welcome-text">
                 Swastha helps you take control of your health journey.
               </p>
+
+              <div className="dashboard-health-score-section">
+                <h2 className="dashboard-health-score-title">
+                  Your Health Snapshot
+                </h2>
+                {healthScore ? (
+                  <Link
+                    href="/health-score-detail"
+                    className="dashboard-health-score-card-link"
+                  >
+                    <div className="dashboard-health-score-card">
+                      <div className="dashboard-health-score-value">
+                        {healthScore.score}
+                        <span className="dashboard-health-score-max">/100</span>
+                      </div>
+                      <p className="dashboard-health-score-text">
+                        {healthScore.explanation}
+                      </p>
+                      <div className="dashboard-health-score-link-text">
+                        View Details & Tips
+                      </div>
+                    </div>
+                  </Link>
+                ) : scoreError ? (
+                  <p className="dashboard-health-score-unavailable">
+                    Unable to calculate your health score right now.
+                  </p>
+                ) : (
+                  <p className="dashboard-health-score-unavailable">
+                    {" "}
+                    {profileLoading || summaryLoading
+                      ? "Loading..."
+                      : "Upload a report to see your health score."}
+                  </p>
+                )}
+              </div>
+
               <div className="dashboard-summary-section">
                 <h2 className="dashboard-summary-title">
                   Your Reports Summary
@@ -345,5 +462,4 @@ export default function Dashboard() {
       </div>
     </div>
   );
-  // --- End Main Render ---
 }

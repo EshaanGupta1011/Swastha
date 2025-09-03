@@ -1,4 +1,3 @@
-// frontend/app/page.tsx
 "use client";
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
@@ -29,10 +28,45 @@ const LandingPage: React.FC = () => {
     };
   }, []);
 
+  // Add heartbeat functionality to ping backend every 10 minutes
+  useEffect(() => {
+    const pingBackend = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/ping`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (response.ok) {
+          console.log("Backend ping successful");
+        } else {
+          console.error("Backend ping failed with status:", response.status);
+        }
+      } catch (error) {
+        console.error("Network error during backend ping:", error);
+      }
+    };
+
+    // Ping immediately when component mounts
+    pingBackend();
+
+    // Set up interval to ping every 10 minutes (600,000 milliseconds)
+    const intervalId = setInterval(pingBackend, 600000);
+
+    // Clean up interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // ... rest of the component remains the same
   return (
     <div className="landing-page-wrapper">
       {/* Navigation Bar */}
